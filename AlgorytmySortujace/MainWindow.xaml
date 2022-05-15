@@ -22,6 +22,7 @@
         <ComboBox x:Name="RodzajCB" HorizontalAlignment="Left" Margin="333,48,0,0" VerticalAlignment="Top" Width="216">
             <ComboBoxItem IsSelected="True">KMP</ComboBoxItem>
             <ComboBoxItem>Bruteforce</ComboBoxItem>
+            <ComboBoxItem>BM</ComboBoxItem>
         </ComboBox>
         <Label x:Name="RodzajL" Content="Wybierz rodzaj sortowania" HorizontalAlignment="Left" Margin="333,17,0,0" VerticalAlignment="Top" Width="216"/>
         <TextBlock x:Name="WynikTB" HorizontalAlignment="Center" Margin="0,186,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="170" Width="375"/>

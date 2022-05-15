@@ -32,17 +32,17 @@ namespace AlgorytmySortujace
         {
             InitializeComponent();
         }
-
+        static int NO_OF_CHARS = 256;
 
         void WyszukiwanieKMP(string pat, string txt)
         {
             int M = pat.Length;
             int N = txt.Length;
 
-            int[] npp = new int[M];
+            int[] lps = new int[M];
             int j = 0;
 
-            obliczNPPArray(pat, M, npp);
+            countLPSArray(pat, M, lps);
 
             int i = 0;
             while (i < N)
@@ -55,22 +55,22 @@ namespace AlgorytmySortujace
                 if(j == M)
                 {
                     WynikTB.Text += '\n' + "Znaleziono wzorzec na indeksie" + (i - j);
-                    j = npp[j - 1];
+                    j = lps[j - 1];
                 }
                 else if(i<N && pat[j] != txt[i])
                 {
                     if (j != 0)
-                        j = npp[j - 1];
+                        j = lps[j - 1];
                     else i = i + 1;
                 }
             }
         }
-        void obliczNPPArray(string pat, int M, int[] npp)
+        void countLPSArray(string pat, int M, int []lps)
         {
          
             int len = 0;
             int i = 1;
-            npp[0] = 0; 
+            lps[0] = 0; 
 
        
             while (i < M)
@@ -78,7 +78,7 @@ namespace AlgorytmySortujace
                 if (pat[i] == pat[len])
                 {
                     len++;
-                    npp[i] = len;
+                    lps[i] = len;
                     i++;
                 }
                 else 
@@ -86,12 +86,12 @@ namespace AlgorytmySortujace
                 
                     if (len != 0)
                     {
-                        len = npp[len - 1];
+                        len = lps[len - 1];
 
                     }
                     else 
                     {
-                        npp[i] = len;
+                        lps[i] = len;
                         i++;
                     }
                 }
@@ -115,6 +115,48 @@ namespace AlgorytmySortujace
                 if (j == M) WynikTB.Text += '\n' + "zanaleziono na indexie" + i;
             }
         }
+        static int max(int a,int b)
+        {
+            return (a > b) ? a:b;
+        }
+
+        static void badCharHeuristic(char []str, int size, int []badchar)
+        {
+            int i;
+
+            for (i = 0; i < NO_OF_CHARS; i++)
+                badchar[i] = - 1;
+            for (i = 0; i < size; i++)
+                badchar[(int) str[i]] = i;
+        }
+         void wyszukiwanieBM(char []pat, char []txt)
+        {
+            int M = pat.Length;
+            int N = txt.Length;
+            int[] badchar = new int[NO_OF_CHARS];
+
+            badCharHeuristic(pat, M, badchar);
+
+            int s = 0;
+
+            while (s <= (N - M))
+            {
+                int j = M - 1;
+
+                while (j >= 0 && pat[j] == txt[s + j])
+                        j--;
+                if (j < 0)
+                {
+                    WynikTB.Text += '\n' + "znaleziono na" + s;
+
+                    s += (s + M < N) ? M - badchar[txt[s + M]] : 1;
+                }
+                else
+                    s += max(1, j - badchar[txt[s + j]]);
+            }
+
+        }
+        
 
         private void Zaladuj_Click(object sender, RoutedEventArgs e)
         {
@@ -136,6 +178,14 @@ namespace AlgorytmySortujace
                 break;
                 case 1:
                     Bruteforce(WzorTB.Text, PlikKontentTB.Text);
+                break;
+                case 2:
+                    char[] txt = PlikKontentTB.Text.ToCharArray();
+                    char[] pat = WzorTB.Text.ToCharArray();
+
+                    
+                    wyszukiwanieBM(pat, txt);
+                    
                 break;
             }
         }
