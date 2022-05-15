@@ -17,13 +17,17 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <TextBlock HorizontalAlignment="Left" Margin="10,51,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="351" Width="185"/>
-        <TextBlock HorizontalAlignment="Left" Margin="200,51,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="239"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="200,20,0,0" VerticalAlignment="Top" Width="239"/>
-        <ComboBox HorizontalAlignment="Left" Margin="516,42,0,0" VerticalAlignment="Top" Width="216"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="516,15,0,0" VerticalAlignment="Top" Width="239"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,186,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="170" Width="375"/>
+        <TextBlock x:Name="PlikKontentTB" HorizontalAlignment="Left" Margin="10,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="351" Width="133"/>
+        <Label x:Name="WzorL" Content="Wpisz wzorzec" HorizontalAlignment="Left" Margin="200,20,0,0" VerticalAlignment="Top" Width="239"/>
+        <ComboBox x:Name="RodzajCB" HorizontalAlignment="Left" Margin="333,48,0,0" VerticalAlignment="Top" Width="216">
+            <ComboBoxItem IsSelected="True">KMP</ComboBoxItem>
+            <ComboBoxItem>Bruteforce</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="RodzajL" Content="Wybierz rodzaj sortowania" HorizontalAlignment="Left" Margin="333,17,0,0" VerticalAlignment="Top" Width="216"/>
+        <TextBlock x:Name="WynikTB" HorizontalAlignment="Center" Margin="0,186,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="170" Width="375"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="213,155,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="WzorTB" HorizontalAlignment="Left" Margin="200,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="SzukajBtn" Content="Szukaj" HorizontalAlignment="Left" Margin="572,30,0,0" VerticalAlignment="Top" Height="40" Width="186" Click="SzukajBtn_Click"/>
 
     </Grid>
 </Window>
