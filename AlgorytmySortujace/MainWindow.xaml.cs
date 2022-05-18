@@ -313,7 +313,7 @@ namespace AlgorytmySortujace
                     for (int i = 0; i <= p; i++)
                     {
                         int n = cntDistinct(PlikKontentTB.Text); // sprawdzamy ilość różnych liter w celu stworzenia alfabetu dla algorytmu
-                        int q = nextPrime(n); // znalezienie kolejnej liczby pierwszej dla ilości różnych liter np. n = 16 wtedy q = 17
+                        int q = nextPrime(n); // znalezienie kolejnej liczby pierwszej dla ilości różnych liter np. n = 16 wtedy q = 17 używane by uniknąć przeładowania w późniejszej fazie wyszukiwania
                         wyszukiwanieRK(WzorTB.Text, PlikKontentTB.Text, q);
                     }
                     stopwatch.Stop();
