@@ -22,11 +22,12 @@
         <ComboBox x:Name="RodzajCB" HorizontalAlignment="Left" Margin="333,48,0,0" VerticalAlignment="Top" Width="216">
             <ComboBoxItem IsSelected="True">KMP</ComboBoxItem>
             <ComboBoxItem>Bruteforce</ComboBoxItem>
-            <ComboBoxItem>BM</ComboBoxItem>
+            <ComboBoxItem>Boyera-Moorea</ComboBoxItem>
+            <ComboBoxItem>Rabina-Karpa</ComboBoxItem>
         </ComboBox>
         <Label x:Name="RodzajL" Content="Wybierz rodzaj sortowania" HorizontalAlignment="Left" Margin="333,17,0,0" VerticalAlignment="Top" Width="216"/>
-        <TextBlock x:Name="WynikTB" HorizontalAlignment="Center" Margin="0,186,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="170" Width="375"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="213,155,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="WynikTB" HorizontalAlignment="Left" Margin="148,156,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="170" Width="375" Background="#FFB5EEE6"/>
+        <Label Content="Pozycja szukanego wzorca pojawi się poniżej" HorizontalAlignment="Left" Margin="143,125,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="WzorTB" HorizontalAlignment="Left" Margin="200,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="SzukajBtn" Content="Szukaj" HorizontalAlignment="Left" Margin="572,30,0,0" VerticalAlignment="Top" Height="40" Width="186" Click="SzukajBtn_Click"/>
 
