@@ -17,6 +17,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 
 
@@ -33,9 +34,11 @@ namespace AlgorytmySortujace
             InitializeComponent();
         }
         public readonly static int NO_OF_CHARS = 256;
+        public decimal p;
 
         void WyszukiwanieKMP(string pat, string txt)
         {
+            WynikTB.Text = " ";
             int M = pat.Length;
             int N = txt.Length;
 
@@ -99,6 +102,7 @@ namespace AlgorytmySortujace
         }
         void Bruteforce(string pat, string txt)
         {
+            WynikTB.Text = " ";
             int M = pat.Length;
             int N = txt.Length;
             for (int i = 0; i <= N - M; i++) 
@@ -131,6 +135,7 @@ namespace AlgorytmySortujace
         }
          void wyszukiwanieBM(char []pat, char []txt)
         {
+            WynikTB.Text = " ";
             int M = pat.Length;
             int N = txt.Length;
             int[] badchar = new int[NO_OF_CHARS];
@@ -262,32 +267,59 @@ namespace AlgorytmySortujace
         
         private void SzukajBtn_Click(object sender, RoutedEventArgs e)
         {
-           /* if(RodzajCB.SelectedIndex == 0)
-            {
-                WyszukiwanieKMP(WzorTB.Text, PlikKontentTB.Text);
-            }*/
-           switch(RodzajCB.SelectedIndex)
-            {
-                case 0:
-                    WyszukiwanieKMP(WzorTB.Text, PlikKontentTB.Text);
-                break;
-                case 1:
-                    Bruteforce(WzorTB.Text, PlikKontentTB.Text);
-                break;
-                case 2:
-                    char[] txt = PlikKontentTB.Text.ToCharArray();
-                    char[] pat = WzorTB.Text.ToCharArray();
-                    wyszukiwanieBM(pat, txt);
-                break;
-                case 3:
-                     int n = cntDistinct(PlikKontentTB.Text);
-                     WynikTB.Text = n.ToString();
-                     int q = nextPrime(n);
-                 
-                    wyszukiwanieRK(WzorTB.Text, PlikKontentTB.Text, q);
-                   
+            string il = PowtorzeniaTB.Text.ToString();
+            int p = Int32.Parse(il);
+            Stopwatch stopwatch = new Stopwatch();
+            
+            switch (RodzajCB.SelectedIndex)
+            {  
+                case 0: //Wyszukiwanie KMP
+                    stopwatch.Start();
+                    for (int i = 0; i < p; i++)
+                    {
+                        WyszukiwanieKMP(WzorTB.Text, PlikKontentTB.Text);
+                    }
+                    stopwatch.Stop();
+                    TimeSpan kmpts = stopwatch.Elapsed;
+                    WynikTB.Text += '\n' + "Wyszukiwanie w ilości: " + p + " wynosiło " + kmpts.ToString("mm\\:ss\\.ff");
+                    break;
 
-                break;
+                case 1://Wyszukiwanie Bruteforce
+                    stopwatch.Start();
+                    for (int i = 0; i <= p; i++)
+                    {
+                        Bruteforce(WzorTB.Text, PlikKontentTB.Text);
+                    }
+                    stopwatch.Stop();
+                    TimeSpan bfts = stopwatch.Elapsed;
+                    WynikTB.Text += '\n' + "Wyszukiwanie w ilości: " + p + " wynosiło " + bfts.ToString("mm\\:ss\\.ff");
+                    break;
+
+                case 2://Wyszukiwanie BM
+                    stopwatch.Start();
+                    for (int i = 0; i <= p; i++)
+                    {
+                        char[] txt = PlikKontentTB.Text.ToCharArray();
+                        char[] pat = WzorTB.Text.ToCharArray();
+                        wyszukiwanieBM(pat, txt);
+                    }
+                    stopwatch.Stop();
+                    TimeSpan bmts = stopwatch.Elapsed;
+                    WynikTB.Text += '\n' + "Wyszukiwanie w ilości: " + p + " wynosiło " + bmts.ToString("mm\\:ss\\.ff");
+                    break;
+
+                case 3://Wyszukiwanie RK
+                    stopwatch.Start();
+                    for (int i = 0; i <= p; i++)
+                    {
+                        int n = cntDistinct(PlikKontentTB.Text); // sprawdzamy ilość różnych liter w celu stworzenia alfabetu dla algorytmu
+                        int q = nextPrime(n); // znalezienie kolejnej liczby pierwszej dla ilości różnych liter np. n = 16 wtedy q = 17
+                        wyszukiwanieRK(WzorTB.Text, PlikKontentTB.Text, q);
+                    }
+                    stopwatch.Stop();
+                    TimeSpan rkts = stopwatch.Elapsed;
+                    WynikTB.Text += '\n' + "Wyszukiwanie w ilości: " + p + " wynosiło " + rkts.ToString("mm\\:ss\\.ff");
+                    break;
             }
         }
     }
