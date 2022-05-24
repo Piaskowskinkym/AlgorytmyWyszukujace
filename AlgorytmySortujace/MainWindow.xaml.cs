@@ -271,7 +271,7 @@ namespace AlgorytmySortujace
             int p = Int32.Parse(il);
             Stopwatch stopwatch = new Stopwatch();
             
-            switch (RodzajCB.SelectedIndex)
+            switch (RodzajCB.SelectedIndex) //szczytywanie indeksu wybranego pola w liście rozwijanej
             {  
                 case 0: //Wyszukiwanie KMP
                     stopwatch.Start();
